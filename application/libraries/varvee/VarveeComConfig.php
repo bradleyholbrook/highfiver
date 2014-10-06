@@ -18,11 +18,16 @@ class VarveeComLeaderboardConfig
 
 	public $page = "1";
 
-	public $schoolYear = "2014";
+	public $schoolYear;
 
 	public $sortGP = "10";
 
 	public $topQty = 5;
+
+	public function __construct()
+	{
+		$this->schoolYear = date('Y');
+	}
 
 	public function url()
 	{
