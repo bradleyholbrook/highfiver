@@ -20,7 +20,7 @@ class VarveeComLeaderboardConfig
 
 	public $schoolYear = "2014";
 
-	public $sortGP = "0";
+	public $sortGP = "10";
 
 	public $topQty = 5;
 

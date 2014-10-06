@@ -34,9 +34,18 @@
 		<tbody>
 		<? foreach( $Leaderboard as $LeaderboardData ): ?>
 		<tr>
-			<td><a href="/index.php/highfiver/player/<?=$LeaderboardData->Player->id ?>/<?=urlencode($LeaderboardData->Player->name) ?>"/><?=$LeaderboardData->Player->name ?></a></td>
+			<td><a href="/index.php/highfiver/player/<?=$LeaderboardData->Player->id ?>"/><?=$LeaderboardData->Player->name ?></a></td>
 		</tr>
 		<? endforeach; ?>
+
+		<? if( count( $Leaderboard ) == 0 ): ?>
+		<tr>
+			<td>
+				Sorry! High Fiver doesn't have enough data to accurately display the top 5 players in Indiana!
+			</td>
+		</tr>
+		<? endif; ?>
+
 		</tbody>
 	</table>
 

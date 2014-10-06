@@ -23,7 +23,13 @@ class VarveeCom
 		// build url
 		$html = file_get_contents( $Config->url() );
 		$doc = phpQuery::newDocument( $html );
+
+		$empty = $doc->find('div.table-body tr.empty-set');
+		if( $empty->html() != "" ) return [];
+
 		$rows = $doc->find('div.table-body tr');
+
+
 
 		// this could be automated instead of hardcoded here
 		// todo: add test to ensure order of properties remains as posted or add logic to sequence properly
@@ -90,19 +96,20 @@ class VarveeCom
 
 		foreach( $rows as $rowKey=>$tr )
 		{
-			if( $rowKey < 2 ) continue;
+			//if( $rowKey < 2 ) continue;
 
 			$cells = $tr->getElementsByTagName('td');
+			if( $cells->length < 2 ) continue;
 
 			$gameData[ $rowKey ] = [];
 
-			$lastrank = 0;
 			foreach( $cells as $cellKey=>$td )
 			{
 				$value = $td->textContent;
 
 				// done, assign data
-				// todo: currently running loop when we alreayd have all the data we need - check this later - something more efficient
+				// todo: currently running loop when we already have all the data we need - check this later - something more efficient
+				if( $value == "-" ) $value = 0;
 				$gameData[ $rowKey ][ @$data[ $cellKey ]] = $value;
 
 			}

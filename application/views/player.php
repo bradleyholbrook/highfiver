@@ -31,7 +31,7 @@
 
 				endforeach;
 
-				echo implode(",", $data);
+				echo implode(",\n", $data);
 				?>
 			]);
 
